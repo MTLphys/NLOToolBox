@@ -1,8 +1,7 @@
 # NLOToolBox
 Computational Toolbox for Modeling Nonlinear Optical Coherence Phenomena
 
-Before running this tool box execute the setup.py file using a devoted Python envioronment i.e. 
+Before running this tool box install numpy,scipy,matplotlib and time modules using a devoted Python envioronment 
  
- ``python.exe setup.py ``
 
-The main program is located in 
+The main program is located in the toolbox file, Example programs are avaialable in the Example Folder... 
