@@ -4,14 +4,26 @@ Definition of Propagator and main functionality of the program
 @author: mattl
 """
 import numpy as np 
-
+import numba as nb 
 
 II = np.eye(2)  
 def main():
     print('Hello World')
   
+#defining LUdecomposition
+nb.jit()
+def LUdecomposition():
+    return 0 
+#defining the first order unitary Crank propogator for the plasmonn
+nb.jit()
+def inv(A):
+    a=0.0
+    y=0.0
+    i = 0 
+    j = 0 
 
-#defining the first order unitary Crank propogator for the plasmon
+#defining the first order unitary Crank propogator for the plasmonn
+nb.jit()
 def firstorderaprx(E,E1i,E2i,dt): 
     H = np.array([[E1i,-E],[-E,E2i]],dtype=np.complex_)
     M = II-H*0.5j*dt

@@ -1,0 +1,12 @@
+[project]
+name = 'NLOToolBox'
+version = '2023.05.17'
+description = "A simple toolbox for the simulation of coupled and broadened systems in nonlinear optics"
+
+[build-system]
+requires = ["setuptools >= 61.0.0"]
+build-backend = "setuptools.build_meta"
+
+
+[tools.setuptools.packages.find]
+where = ["src"]
