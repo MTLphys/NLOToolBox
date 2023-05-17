@@ -30,7 +30,8 @@ def firstorderaprx(E,E1i,E2i,dt):
     N = II+H*0.5j*dt
     NI= np.linalg.inv(N)
     return np.matmul(NI,M)
-
+#define 
+np.jit()
 def propagate(U,HR,dt,rho,GS):
     UD = np.conjugate(U)
     R = HR*(rho-GS)
