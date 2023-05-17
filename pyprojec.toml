@@ -2,17 +2,37 @@
 
 name = "NLOToolBox"
 
-authors= [name = "Matthew Larson",email = larsonmw@mail.uc.edu]
+authors= [{name = "Matthew Larson",email = "larsonmw@mail.uc.edu"},
+]
 
 version = "2023.05.17"
 
 description = "A simple toolbox for the simulation of coupled and broadened systems in nonlinear optics"
 
 readme = "README.md"
+
 requires-python = ">=3.7"
-keywords =["one","two"]
+
+keywords =[  "Nonlinear Optics"
+            ,"Couple Systems"
+            ,"inhomogenous broadening"
+            ,"FourWaveMixing"
+            ]
+license = {text="GNU GENERAL PUBLIC LICENSE"}
+classifiers = ["Development Status:: 2- Pre-Alpha",
+                "Programing Language:: Python:: 3"]
 
 
+dependencies = [
+    "numba",
+    "matplotlib",
+    "numpy",
+    "scipy"
+]
+
+[project.urls]
+
+repository = "https://github.com/MTLphys/NLOToolBox"
 
 [build-system]
 requires = ["setuptools >= 61.0.0"]
@@ -22,3 +42,4 @@ build-backend = "setuptools.build_meta"
 
 [tools.setuptools.packages.find]
 where = ["src"]
+

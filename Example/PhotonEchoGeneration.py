@@ -7,8 +7,8 @@ Simulation of photon echo process generation code, Run first
 #import packages
 import numpy as np #import Math resources 
 from scipy.io import savemat #import IO 
-from Efield import Ef #import user defined Efield function
-from Propagation import firstorderaprx, propagate #import user defined Propagator functions 
+from NLOToolBox.Efield import Ef #import user defined Efield function
+from NLOToolBox.Propagation import firstorderaprx, propagate #import user defined Propagator functions 
 
 #Moving on to the coupled system simulation 
 import time
