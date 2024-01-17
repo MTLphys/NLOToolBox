@@ -8,10 +8,10 @@ import numpy as np
 
 II = np.eye(2)  
 def main():
-    print('Hello World')
+    return 0
   
 
-#defining the first order unitary Crank propogator for the plasmon
+#defining the first order unitary CN propagator for the plasmon
 def firstorderaprx(E,E1i,E2i,dt): 
     H = np.array([[E1i,-E],[-E,E2i]],dtype=np.complex_)
     M = II-H*0.5j*dt

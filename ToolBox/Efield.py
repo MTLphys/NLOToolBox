@@ -23,46 +23,28 @@ def Ef(t,DT,E0,omega1,omega2=0,omega3=0,Epulse=True,Dt1=0,Dt2=0):
     Returns:
         _ndarray_: an exciting pulse series 
     """
-    Efield = np.zeros(len(t))
-    omega2 = omega2+(omega2==0)*omega1 
-    omega3 = omega3+(omega3==0)*omega1
-    if(Epulse):
-        if((Dt1==0)&(Dt2==0)):
-            Efield= E0*np.sin(omega1*(t+DT))*pulse(t,5*2*np.pi/omega1)
+    Efield = np.zeros(len(t))#setting ups the place holder for the efield values
+    omega2 = omega2+(omega2==0)*omega1#Set frequency of second pulse 
+    omega3 = omega3+(omega3==0)*omega1#Set frequency of third pulse
+    if(Epulse):#choose pulse vs cw
+        if((Dt1==0)&(Dt2==0)):#determine if there is a delay between pulse 1(2) and 2(3) 
+            Efield= E0*np.sin(omega1*(t+DT))*pulse(t,5*2*np.pi/omega1) # set up pulse 1 
         else:
-            if((Dt1==0)^(Dt2==0)):    
-                Dt = Dt1+Dt2
-                Efield=E0*np.sin(omega1*(t+DT))*pulse(t,5*2*np.pi/omega1)+E0*np.sin(omega2*(t+DT))*pulse(t-Dt,5*2*np.pi/omega2)
+            if((Dt1==0)^(Dt2==0)):# determine if there is just 1 delayed pulse      
+                Dt = Dt1+Dt2#set the delay for secondary pulse
+                Efield=E0*np.sin(omega1*(t+DT))*pulse(t,5*2*np.pi/omega1)+E0*np.sin(omega2*(t+DT))*pulse(t-Dt,5*2*np.pi/omega2)#set up pulse 1 and secondary pulse
             else:
-                Efield=E0*np.sin(omega1*(t+DT))*pulse(t,5*2*np.pi/omega1)+E0*np.sin(omega2*(t+DT))*pulse(t-Dt1,5*2*np.pi/omega2)+E0*np.sin(omega3*(t+DT))*pulse(t-Dt2,5*2*np.pi/omega3)
+                Efield=E0*np.sin(omega1*(t+DT))*pulse(t,5*2*np.pi/omega1)+E0*np.sin(omega2*(t+DT))*pulse(t-Dt1,5*2*np.pi/omega2)+E0*np.sin(omega3*(t+DT))*pulse(t-Dt2,5*2*np.pi/omega3)#set up all three pulses
     else:
-        return E0*np.sin(omega1*(t+DT))
+        return E0*np.sin(omega1*(t+DT))#set up cw excitation
     return Efield
-def Efth(t,DT,theta0,omega1,omega2=0,omega3=0,Epulse=True,Dt1=0,Dt2=0,theta1=0,theta2=0): 
-    Efield = np.zeros(len(t))
-    a = 5*2*np.pi/omega1
-    E1 = theta0*a/np.pi 
-    E2 = theta1*a/np.pi 
-    E3 = theta2*a/np.pi 
-    omega2 = omega2+(omega2==0)*omega1 
-    omega3 = omega3+(omega3==0)*omega1
-    if(Epulse):
-        if((Dt1==0)&(Dt2==0)):
-            Efield= E1*np.sin(omega1*(t+DT))*pulse(t,5*2*np.pi/omega1)
-        else:
-            if((Dt1==0)^(Dt2==0)):    
-                Dt = Dt1+Dt2
-                Efield=E1*np.sin(omega1*(t+DT))*pulse(t,5*2*np.pi/omega1)+E2*np.sin(omega2*(t+DT))*pulse(t-Dt,5*2*np.pi/omega2)
-            else:
-                Efield=E1*np.sin(omega1*(t+DT))*pulse(t,5*2*np.pi/omega1)+E2*np.sin(omega2*(t+DT))*pulse(t-Dt1,5*2*np.pi/omega2)+E3*np.sin(omega3*(t+DT))*pulse(t-Dt2,5*2*np.pi/omega3)
-    else:
-        return E1*np.sin(omega1*(t+DT))
-    return Efield
-def MPulse(t,E0,omega1,Dt=0,Phi=0): 
-    #Efield combinded function 
-    Efield = np.zeros(len(t))
-    Efield= E0*np.sin(omega1*t-Dt-Phi)*pulse(t-Dt,5*2*np.pi/omega1)
-    return Efield 
+
+
 def pulse(t,dt):
-    """The pulse shape function for a sinusoidal puls shape which tends to zero at either side""" 
+    """The pulse shape function for a sinusoidal puls shape which goes to zero at either side
+    Args: 
+        t(array or double): the full time space of the pulse series
+        dt(double): the total pulse width
+    Returns:
+        _ndarray_: A sine pulse envelope""" 
     return np.sin(np.pi*t/dt)**2*np.heaviside(t,.5)*np.heaviside(dt-t,.5)
